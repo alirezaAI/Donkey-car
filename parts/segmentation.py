@@ -222,7 +222,10 @@ class PathSeg(object):
         
         outputbitmap = np.zeros((480,640)).astype(int)
         
+        # seg_map == 4 means if a pixel value in the image is 4 (floor:flooring from the list_labels) assign that pixel to be white (255)
+        # you can change the value of 4 to any other number between 0 to 150 to segment another category
         result=np.where(seg_map == 4,255,0)
+       
         result = Image.fromarray(np.uint8(result)).convert('L') 
              
         cv_image=np.array(result)   
